@@ -56,11 +56,11 @@ async function Homepage() {
   let callToAction = data.acfOptionsMainMenu.mainMenu.callToActionButton;
   return (
     <div>
-      <MainMenu
+      {/* <MainMenu
         items={mainMenuItems}
         callToActionLabel={callToAction.label}
         callToActionDestination={callToAction.destination.uri}
-      />
+      /> */}
       <BlockRenderer blocks={cleanAndTranformBlocks(data.nodeByUri.blocks)} />
     </div>
   );
