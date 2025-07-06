@@ -1,5 +1,7 @@
+import Image from "next/image";
 import { theme } from "../../../theme";
 import { CallToActionButton } from "../CallToActionButton";
+import { Column } from "../Column";
 import { Columns } from "../Columns";
 import { Cover } from "../Cover";
 import { Heading } from "../Heading";
@@ -8,6 +10,25 @@ import { Paragraph } from "../Paragraph/";
 function BlockRenderer({ blocks }) {
   return blocks.map((block, ind) => {
     switch (block.name) {
+      case "core/image": {
+        return (
+          <Image
+            key={block.id}
+            src={block.attributes.url}
+            height={block.attributes.height}
+            width={block.attributes.width}
+            alt={block.attributes.alt || ""}
+          />
+        );
+      }
+      case "core/column": {
+        console.log(block);
+        return (
+          <Column key={block.id} width={"block.attributes.width"}>
+            <BlockRenderer blocks={block.innerBlocks} />
+          </Column>
+        );
+      }
       case "core/columns": {
         return (
           <Columns
