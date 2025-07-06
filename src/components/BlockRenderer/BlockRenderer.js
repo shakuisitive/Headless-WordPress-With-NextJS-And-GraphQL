@@ -1,5 +1,6 @@
 import { theme } from "../../../theme";
 import { CallToActionButton } from "../CallToActionButton";
+import { Columns } from "../Columns";
 import { Cover } from "../Cover";
 import { Heading } from "../Heading";
 import { Paragraph } from "../Paragraph/";
@@ -7,6 +8,16 @@ import { Paragraph } from "../Paragraph/";
 function BlockRenderer({ blocks }) {
   return blocks.map((block, ind) => {
     switch (block.name) {
+      case "core/columns": {
+        return (
+          <Columns
+            key={block.id}
+            isStackedOnMobile={block.attributes.isStackedOnMobile}
+          >
+            <BlockRenderer blocks={block.innerBlocks} />
+          </Columns>
+        );
+      }
       case "acf/ctabutton": {
         return (
           <CallToActionButton
