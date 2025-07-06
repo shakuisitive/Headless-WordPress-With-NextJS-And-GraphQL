@@ -1,11 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faHouseUser } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-export let MainMenu = ({
-  items,
-  callToActionDestination,
-  callToActionLabel,
-}) => {
+import { ButtonLink } from "@/components//ButtonLink";
+let MainMenu = ({ items, callToActionDestination, callToActionLabel }) => {
   return (
     <div className="bg-slate-800 text-white px-5 h-[64px] sticky top-0 z-20 flex">
       <div className="py-4 pl-5 flex text-pink-600">
@@ -42,14 +39,14 @@ export let MainMenu = ({
           );
         })}
         <div className="ml-3 my-auto">
-          <Link
-            href={callToActionDestination}
-            className="bg-pink-500 bg:bg-pink-700 inline-block my-2 px-4 py-2 uppercase rounded-md cursor-pointer text-white font-bold"
-          >
-            {callToActionLabel}
-          </Link>
+          <ButtonLink
+            destination={callToActionDestination}
+            label={callToActionLabel}
+          />
         </div>
       </div>
     </div>
   );
 };
+
+export { MainMenu };
