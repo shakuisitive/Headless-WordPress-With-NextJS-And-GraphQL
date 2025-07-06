@@ -1,4 +1,5 @@
 import { theme } from "../../../theme";
+import { CallToActionButton } from "../CallToActionButton";
 import { Cover } from "../Cover";
 import { Heading } from "../Heading";
 import { Paragraph } from "../Paragraph/";
@@ -6,6 +7,16 @@ import { Paragraph } from "../Paragraph/";
 function BlockRenderer({ blocks }) {
   return blocks.map((block, ind) => {
     switch (block.name) {
+      case "acf/ctabutton": {
+        return (
+          <CallToActionButton
+            key={block.id}
+            buttonLabel={block.attributes.data.label}
+            buttonDestination={block.attributes.data.destination || "/"}
+            align={block.attributes.data.align}
+          />
+        );
+      }
       case "core/paragraph": {
         let textColor = block.attributes.style?.elements.link.color.text;
         return (
@@ -36,8 +47,10 @@ function BlockRenderer({ blocks }) {
           </Heading>
         );
       }
-      default:
+      default: {
+        console.log("Unknown", block);
         return null;
+      }
     }
   });
 }
