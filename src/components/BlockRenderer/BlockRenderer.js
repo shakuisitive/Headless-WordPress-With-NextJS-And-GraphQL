@@ -49,6 +49,12 @@ function BlockRenderer({ blocks }) {
           />
         );
       }
+      case "core/block": {
+        return <BlockRenderer key={block.id} blocks={block.innerBlocks} />;
+      }
+      case "core/group": {
+        return <BlockRenderer key={block.id} blocks={block.innerBlocks} />;
+      }
       case "core/paragraph": {
         let textColor = block.attributes.style?.elements.link.color.text;
         return (
